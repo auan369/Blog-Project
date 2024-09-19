@@ -1,0 +1,43 @@
+
+<!-- Step 3 Add Header -->
+ <%- include("partials/solution-header.ejs") %>
+
+
+<!-- Step 2 - If an adjective and noun are sent to this ejs file, 
+    Change the h1 to show the adjective and noun.
+    But when the user first goes on the website and there is no adjective and noun, 
+    Show the default h1 below -->
+  
+  <h1>Recent Posts</h1>
+  <% if (locals.posts) { %>
+    <% posts.forEach(function(post) { %>
+      <div id="post" style="background-color:<%= post.color %>">
+        <h3><%= post.title %></h3>
+        <!-- <p class="content"><%= post.content %></p> -->
+        <p><em class="date"><%= post.date %></em></p>
+        <!-- <p><em class="date"><%= post.color %></em></p> -->
+        <form action="/view" method="POST">
+          <input type="hidden" name="index" value="<%= post.index %>">
+          <input type="submit" value="Read more...">
+        </form>
+        <form action="/delete" method="POST">
+          <input type="hidden" name="index" value="<%= post.index %>">
+          <input type="submit" value="Delete">
+        </form>
+      </div>
+      <% }) %>
+  <% } %>
+
+  
+  <h2>Compose</h2>
+  <form id="submit" action="/submit" method="POST">
+    <label for="Title">Title:</label>
+    <input type="text" id="title" name="title" class="textInput" required>
+    <label for="Content">Content:</label>
+    <textarea id="content" name="content" class="textInput" required rows="4" cols="50">Tell us what you think...</textarea>
+    <input type="submit" value="Submit">
+  </form>
+  <!-- <%- include("partials/solution-footer.ejs") %> -->
+</body>
+
+<!-- Step 3 Add Footer -->

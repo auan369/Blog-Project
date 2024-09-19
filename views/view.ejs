@@ -1,0 +1,32 @@
+<body>
+<!-- Step 3 Add Header -->
+ <%- include("partials/solution-header.ejs") %>
+
+
+<!-- Step 2 - If an adjective and noun are sent to this ejs file, 
+    Change the h1 to show the adjective and noun.
+    But when the user first goes on the website and there is no adjective and noun, 
+    Show the default h1 below -->
+  
+  <!-- <h1>Recent Posts</h1> -->
+  <% if (locals.posts) { %>
+    <% const post  = posts[index-1]%>
+    
+      <div id="postOne">
+        <% if (post.title) { %>
+          <h3><%= post.title%></h3>
+          <p class="content"><%= post.content %></p>
+          <p><em class="date"><%= post.date %></em></p>
+        <% } %>
+      </div>
+  <% } %> 
+
+  
+  <form action="/submit" method="GET">
+    <input type="submit" value="Back">
+  </form>
+  <!-- <%- include("partials/solution-footer.ejs") %> -->
+</main>
+</body>
+
+<!-- Step 3 Add Footer -->
